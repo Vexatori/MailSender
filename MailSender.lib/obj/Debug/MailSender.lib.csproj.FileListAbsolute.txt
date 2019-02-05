@@ -1,0 +1,7 @@
+F:\Проекты VS\MailSender\MailSender.lib\bin\Debug\MailSender.lib.dll
+F:\Проекты VS\MailSender\MailSender.lib\bin\Debug\MailSender.lib.pdb
+F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.csprojAssemblyReference.cache
+F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.csproj.CoreCompileInputs.cache
+F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.dll
+F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.pdb
+F:\Проекты VS\MailSender\MailSender.lib\bin\Debug\MailSender.lib.dll.config
