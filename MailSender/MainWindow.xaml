@@ -1,0 +1,169 @@
+﻿<Window x:Class="MailSender.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MailSender"
+        xmlns:linq2sql="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
+        xmlns:dd="clr-namespace:MailSender.lib.Data.Debug;assembly=MailSender.lib"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Создать"/>
+                <MenuItem Header="Открыть"/>
+                <MenuItem Header="Сохранить"/>
+                <MenuItem Header="Закрыть"/>
+                <Separator/>
+                <MenuItem Header="Выход"/>
+            </MenuItem>
+            <MenuItem Header="Сервис" IsEnabled="False"></MenuItem>
+            <MenuItem Header="Помощь" IsEnabled="False"></MenuItem>
+        </Menu>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StackPanel Orientation="Horizontal" xmlns:c="clr-namespace:MailSender.Controls">
+                <TextBlock Text="Перейти к вкладке" VerticalAlignment="Center" Margin="0, 0, 5, 0"></TextBlock>
+                <c:TabChanger MaxHeight="20" Left="TabChanger_OnLeft" Right="TabChanger_OnRight"></c:TabChanger>
+                <TextBlock Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
+            </StackPanel>
+        </StatusBar>
+        <TabControl x:Name="tcTabs">
+            <TabItem Header="Списки">
+                <DockPanel>
+                    <ToolBarTray DockPanel.Dock="Top">
+                        <ToolBarTray.Resources>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Height" Value="20"/>
+                            </Style>
+                        </ToolBarTray.Resources>
+                        <ToolBar Band="0">
+                            <Label Content="Сервера" Margin="25,0,0,0"/>
+                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name">
+                            </ComboBox>
+                            <Button ToolTip="Добавить">
+                                <Image Source="img/add.png"/>
+                            </Button>
+                            <Button ToolTip="Редактировать">
+                                <Image Source="img/edit.png"/>
+                            </Button>
+                            <Button ToolTip="Удалить">
+                                <Image Source="img/remove.png"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar Band="1">
+                            <Label Content="Отправители"/>
+                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Senders.Items}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type dd:Sender}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding Address}" Margin="5, 0, 0 ,0" Opacity="0.6"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Button ToolTip="Добавить">
+                                <Image Source="img/add.png"/>
+                            </Button>
+                            <Button ToolTip="Редактировать">
+                                <Image Source="img/edit.png"/>
+                            </Button>
+                            <Button ToolTip="Удалить">
+                                <Image Source="img/remove.png"/>
+                            </Button>
+                        </ToolBar>
+                        <ToolBar>
+                            <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Перейти в планировщик"/>
+                            <Button Click="Button_Click">
+                                <Image Source="img/scheduler.png"/>
+                            </Button>
+                        </ToolBar>
+                    </ToolBarTray>
+                    <GroupBox Header="Список получателей писем">
+                        <GroupBox.Resources>
+                            <linq2sql:MailDatabaseContext x:Key="MailData"/>
+                        </GroupBox.Resources>
+                        <DataGrid AutoGenerateColumns="False" 
+                                  ItemsSource="{Binding Recipient, Source={StaticResource MailData}}" 
+                                  HorizontalGridLinesBrush="{x:Null}" 
+                                  VerticalGridLinesBrush="DarkGray"
+                                  IsReadOnly="True">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                                <DataGridTextColumn Header="Address" MinWidth="150" Binding="{Binding Address}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </GroupBox>
+                </DockPanel>
+            </TabItem>
+            <TabItem Header="Планировщик">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel>
+                        <Calendar/>
+                        <TextBlock Text="Время:"/>
+                        <xctk:TimePicker/>
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Запланировать" VerticalAlignment="Center"/>
+                                    <Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Отправить сейчас" VerticalAlignment="Center"/>
+                                    <Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                    <GroupBox Grid.Column="1" Header="Задачи планировщика">
+                        <ListBox ItemsSource="{x:Static dd:SchedulerTasks.Items}">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListBoxItem}">
+                                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type dd:SchedulerTasks}">
+                                    <GroupBox>
+                                        <GroupBox.Header>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding Name}"/>
+                                                <TextBlock Text=":"/>
+                                                <TextBlock Text="{Binding Time, StringFormat='{}{0: dddd, d MMMM, yyyy, HH:mm:ss}', ConverterCulture=ru-ru}"/>
+                                            </StackPanel>
+                                        </GroupBox.Header>
+                                        <TextBlock Text="{Binding Mail}"/>
+                                    </GroupBox>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Редактор писем">
+                <DockPanel>
+                    <GroupBox Header="Письма">
+                        <DockPanel MinWidth="150" MaxWidth="200">
+                            <Button Content="Создать" DockPanel.Dock="Bottom"></Button>
+                            <Button Content="Сохранить" DockPanel.Dock="Bottom"></Button>
+                            <ListBox></ListBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <GroupBox Header="Текст письма"></GroupBox>
+                </DockPanel>
+            </TabItem>
+            <!--<TabItem Header="Статистика" IsEnabled="False"></TabItem>-->
+        </TabControl>
+    </DockPanel>
+</Window>
