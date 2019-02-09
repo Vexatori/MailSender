@@ -31,7 +31,7 @@ namespace MailSender
 
         private void Button_Click( object sender, RoutedEventArgs e )
         {
-            tcTabs.SelectedIndex = 1;
+            tcTabs.SelectedIndex = tcTabs.Items.IndexOf( tiScheduler );
         }
 
         private void TabChanger_OnLeft( object sender, EventArgs e )

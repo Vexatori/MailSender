@@ -5,3 +5,9 @@ F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.csproj.C
 F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.dll
 F:\Проекты VS\MailSender\MailSender.lib\obj\Debug\MailSender.lib.pdb
 F:\Проекты VS\MailSender\MailSender.lib\bin\Debug\MailSender.lib.dll.config
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\bin\Debug\MailSender.lib.dll.config
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\bin\Debug\MailSender.lib.dll
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\bin\Debug\MailSender.lib.pdb
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.csproj.CoreCompileInputs.cache
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.dll
+C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.pdb
