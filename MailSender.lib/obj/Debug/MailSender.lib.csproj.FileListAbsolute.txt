@@ -11,3 +11,4 @@ C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\bin\Debug\MailSender.lib.p
 C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.csproj.CoreCompileInputs.cache
 C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.dll
 C:\Users\Alex\Source\Repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.pdb
+C:\Users\Alex\source\repos\MailSender2\MailSender.lib\obj\Debug\MailSender.lib.csprojAssemblyReference.cache

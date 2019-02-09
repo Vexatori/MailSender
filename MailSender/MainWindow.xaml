@@ -33,7 +33,7 @@
             <StackPanel Orientation="Horizontal" xmlns:c="clr-namespace:MailSender.Controls">
                 <TextBlock Text="Перейти к вкладке" VerticalAlignment="Center" Margin="0, 0, 5, 0"></TextBlock>
                 <c:TabChanger MaxHeight="20" Left="TabChanger_OnLeft" Right="TabChanger_OnRight"></c:TabChanger>
-                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, StringFormat=dd.MM.yyyy hh:MM:ss}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, StringFormat=dd.MM.yyyy HH:MM:ss}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
             </StackPanel>
         </StatusBar>
         <TabControl x:Name="tcTabs">
