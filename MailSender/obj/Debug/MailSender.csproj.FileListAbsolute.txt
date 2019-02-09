@@ -45,7 +45,6 @@ C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.AvalonDock
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.DataGrid.dll
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\Xceed.Wpf.Toolkit.dll
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\MailSender.lib.pdb
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\bin\Debug\MailSender.lib.dll.config
@@ -76,3 +75,14 @@ C:\Users\Alex\Source\Repos\MailSender2\MailSender\obj\Debug\MailSender.csproj.Co
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\obj\Debug\MailSender.csproj.CopyComplete
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\obj\Debug\MailSender.exe
 C:\Users\Alex\Source\Repos\MailSender2\MailSender\obj\Debug\MailSender.pdb
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\CommonServiceLocator.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Extras.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Platform.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.pdb
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.xml
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Extras.pdb
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Extras.xml
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Platform.pdb
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Platform.xml
