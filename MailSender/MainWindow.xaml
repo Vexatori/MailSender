@@ -7,12 +7,15 @@
         xmlns:linq2sql="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:dd="clr-namespace:MailSender.lib.Data.Debug;assembly=MailSender.lib"
         xmlns:v="clr-namespace:MailSender.ViewModels"
+        xmlns:timer="clr-namespace:MailSender.UtilityClasses"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800">
-    <!--<Window.Resources>
-        <vm:TestViewModel x:Key="TestViewModel"/>
-    </Window.Resources>-->
+        Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
+        <timer:Timer x:Key="Timer"/>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -30,7 +33,7 @@
             <StackPanel Orientation="Horizontal" xmlns:c="clr-namespace:MailSender.Controls">
                 <TextBlock Text="Перейти к вкладке" VerticalAlignment="Center" Margin="0, 0, 5, 0"></TextBlock>
                 <c:TabChanger MaxHeight="20" Left="TabChanger_OnLeft" Right="TabChanger_OnRight"></c:TabChanger>
-                <TextBlock Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, StringFormat=dd.MM.yyyy hh:MM:ss}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
             </StackPanel>
         </StatusBar>
         <TabControl x:Name="tcTabs">

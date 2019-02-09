@@ -25,8 +25,6 @@ namespace MailSender
         public MainWindow()
         {
             InitializeComponent();
-
-            Timer.Init( txtblStatus );
         }
 
         private void Button_Click( object sender, RoutedEventArgs e )

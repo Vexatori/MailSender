@@ -29,16 +29,13 @@ namespace MailSender.ViewModel
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<MainWindowViewModel>();
         }
 
-        public MainViewModel Main
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<MainViewModel>();
-            }
-        }
-        
+        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+
+        public MainWindowViewModel MainWindowModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+
         public static void Cleanup()
         {
             // TODO Clear the ViewModels
