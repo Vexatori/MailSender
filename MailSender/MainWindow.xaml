@@ -7,6 +7,7 @@
         xmlns:linq2sql="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
         xmlns:dd="clr-namespace:MailSender.lib.Data.Debug;assembly=MailSender.lib"
         xmlns:v="clr-namespace:MailSender.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:timer="clr-namespace:MailSender.UtilityClasses"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
@@ -24,7 +25,7 @@
                 <MenuItem Header="Сохранить"/>
                 <MenuItem Header="Закрыть"/>
                 <Separator/>
-                <MenuItem Header="Выход"/>
+                <MenuItem Header="Выход" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Сервис" IsEnabled="False"></MenuItem>
             <MenuItem Header="Помощь" IsEnabled="False"></MenuItem>
@@ -57,13 +58,16 @@
                             <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name">
                             </ComboBox>
                             <Button ToolTip="Добавить">
-                                <Image Source="img/add.png"/>
+                                <!--<Image Source="img/add.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <Image Source="img/edit.png"/>
+                                <!--<Image Source="img/edit.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <Image Source="img/remove.png"/>
+                                <!--<Image Source="img/remove.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar Band="1">
@@ -79,19 +83,23 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button ToolTip="Добавить">
-                                <Image Source="img/add.png"/>
+                                <!--<Image Source="img/add.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <Image Source="img/edit.png"/>
+                                <!--<Image Source="img/edit.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <Image Source="img/remove.png"/>
+                                <!--<Image Source="img/remove.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar>
                             <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Перейти в планировщик"/>
                             <Button Click="Button_Click">
-                                <Image Source="img/scheduler.png"/>
+                                <!--<Image Source="img/scheduler.png"/>-->
+                                <fa:ImageAwesome Height="15" Icon="Calendar"/>
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
@@ -124,7 +132,8 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Запланировать" VerticalAlignment="Center"/>
-                                    <Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>
+                                    <!--<Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>-->
+                                    <fa:ImageAwesome Height="20" Margin="5, 0 ,0 ,0" Icon="ClockOutline"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
@@ -132,7 +141,15 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Отправить сейчас" VerticalAlignment="Center"/>
-                                    <Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>
+                                    <!--<Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>-->
+                                    <fa:ImageAwesome Height="20" Margin="5, 0 ,0 ,0" Icon="Send"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button>
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Отправить со своими данными" VerticalAlignment="Center" TextWrapping="Wrap"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
