@@ -16,6 +16,9 @@
     <Window.Resources>
         <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
         <timer:Timer x:Key="Timer"/>
+        <Style TargetType="{x:Type fa:ImageAwesome}">
+            <Setter Property="Height" Value="15"/>
+        </Style>
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -58,16 +61,13 @@
                             <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name">
                             </ComboBox>
                             <Button ToolTip="Добавить">
-                                <!--<Image Source="img/add.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="AddressCard"/>
+                                <fa:ImageAwesome Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <!--<Image Source="img/edit.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="Edit"/>
+                                <fa:ImageAwesome Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <!--<Image Source="img/remove.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="Trash"/>
+                                <fa:ImageAwesome Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar Band="1">
@@ -83,23 +83,19 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button ToolTip="Добавить">
-                                <!--<Image Source="img/add.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="AddressCard"/>
+                                <fa:ImageAwesome Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <!--<Image Source="img/edit.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="Edit"/>
+                                <fa:ImageAwesome Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <!--<Image Source="img/remove.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="Trash"/>
+                                <fa:ImageAwesome Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar>
                             <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Перейти в планировщик"/>
                             <Button Click="Button_Click">
-                                <!--<Image Source="img/scheduler.png"/>-->
-                                <fa:ImageAwesome Height="15" Icon="Calendar"/>
+                                <fa:ImageAwesome Icon="Calendar"/>
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
