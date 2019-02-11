@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:MailSender.Views"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
     <DockPanel Margin="5">
         <TextBlock DockPanel.Dock="Top" Text="Получатели писем" HorizontalAlignment="Center" Padding="3" FontSize="15" FontWeight="Bold" Margin="0, 0, 0, 3"/>
         <DockPanel DockPanel.Dock="Top" Margin="3, 0, 3, 5">
@@ -19,8 +20,16 @@
                 <fa:ImageAwesome Height="15" Icon="Refresh" Margin="5, 0, 0, 0"/>
             </StackPanel>
         </Button>
-        <DataGrid>
-
+        <DataGrid AutoGenerateColumns="False" 
+                  HorizontalGridLinesBrush="{x:Null}" 
+                  VerticalGridLinesBrush="DarkGray"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Recipients}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Address" MinWidth="150" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </DockPanel>
 </UserControl>

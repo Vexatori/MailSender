@@ -9,9 +9,9 @@
         xmlns:v="clr-namespace:MailSender.ViewModels"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:timer="clr-namespace:MailSender.UtilityClasses"
-        xmlns:s="clr-namespace:System;assembly=System"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:views="clr-namespace:MailSender.Views"
         mc:Ignorable="d"
         Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
@@ -103,7 +103,7 @@
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <GroupBox Header="Список получателей писем">
+                    <!--<GroupBox Header="Список получателей писем">
                         <DataGrid AutoGenerateColumns="False" 
                                   HorizontalGridLinesBrush="{x:Null}" 
                                   VerticalGridLinesBrush="DarkGray"
@@ -115,7 +115,14 @@
                                 <DataGridTextColumn Header="Address" MinWidth="150" Binding="{Binding Address}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </GroupBox>
+                    </GroupBox>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <views:RecipientsView Grid.Column="0"/>
+                    </Grid>
                 </DockPanel>
             </TabItem>
             <TabItem x:Name="tiScheduler" Header="Планировщик">
