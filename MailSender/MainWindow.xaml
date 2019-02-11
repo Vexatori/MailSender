@@ -9,13 +9,14 @@
         xmlns:v="clr-namespace:MailSender.ViewModels"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:timer="clr-namespace:MailSender.UtilityClasses"
+        xmlns:s="clr-namespace:System;assembly=System"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
     <Window.Resources>
         <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
-        <timer:Timer x:Key="Timer"/>
         <Style TargetType="{x:Type fa:ImageAwesome}">
             <Setter Property="Height" Value="15"/>
         </Style>
@@ -34,10 +35,13 @@
             <MenuItem Header="Помощь" IsEnabled="False"></MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.Resources>
+                <timer:Timer x:Key="Timer"/>
+            </StatusBar.Resources>
             <StackPanel Orientation="Horizontal" xmlns:c="clr-namespace:MailSender.Controls">
                 <TextBlock Text="Перейти к вкладке" VerticalAlignment="Center" Margin="0, 0, 5, 0"></TextBlock>
                 <c:TabChanger MaxHeight="20" Left="TabChanger_OnLeft" Right="TabChanger_OnRight"></c:TabChanger>
-                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, StringFormat=dd.MM.yyyy HH:MM:ss}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, ConverterCulture=ru-ru}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
             </StackPanel>
         </StatusBar>
         <TabControl x:Name="tcTabs">

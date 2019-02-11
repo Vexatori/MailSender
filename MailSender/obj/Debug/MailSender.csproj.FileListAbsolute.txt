@@ -88,3 +88,5 @@ C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.P
 C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\GalaSoft.MvvmLight.Platform.xml
 C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\FontAwesome.WPF.dll
 C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\FontAwesome.WPF.xml
+C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientsView.g.cs
+C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientsView.baml
