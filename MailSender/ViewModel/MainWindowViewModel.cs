@@ -4,9 +4,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Interfaces;
+using MailSender.lib.MVVM;
 using MailSender.UtilityClasses;
 
 namespace MailSender.ViewModel
@@ -50,8 +53,23 @@ namespace MailSender.ViewModel
         //    }
         //}
 
+        public ICommand UpdateRecipientsCommand { get; }
+
+        private bool CanUpdateRecipientsCommandExecuted() => true;
+
+        private void OnUpdateRecipientsCommandExecuted()
+        {
+            Recipients.Clear();
+            foreach ( var recipient in _recipientsData.GetAll() )
+            {
+                Recipients.Add( recipient );
+            }
+        }
+
         public MainWindowViewModel( IRecipientsData recipientsData )
         {
+            UpdateRecipientsCommand = new RelayCommand(OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted);
+
             _recipientsData = recipientsData;
         }
     }
