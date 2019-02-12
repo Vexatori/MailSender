@@ -13,6 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
+using MailSender.Views;
+using MailSender.Windows;
+
 using Xceed.Wpf.Toolkit;
 
 namespace MailSender
@@ -51,6 +55,12 @@ namespace MailSender
         private void MenuItem_Click( object sender, RoutedEventArgs e )
         {
             this.Close();
+        }
+
+        private void BtnSendWithOwnParametrs_Click( object sender, RoutedEventArgs e )
+        {
+            SendWithOwnDataWindow sendWithOwnData = new SendWithOwnDataWindow();
+            sendWithOwnData.ShowDialog();
         }
     }
 }

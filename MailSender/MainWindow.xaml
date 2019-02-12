@@ -19,6 +19,7 @@
         <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
         <Style TargetType="{x:Type fa:ImageAwesome}">
             <Setter Property="Height" Value="15"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
         </Style>
     </Window.Resources>
     <DockPanel>
@@ -62,8 +63,7 @@
                         </ToolBarTray.Resources>
                         <ToolBar Band="0">
                             <Label Content="Сервера" Margin="25,0,0,0"/>
-                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name">
-                            </ComboBox>
+                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name"/>
                             <Button ToolTip="Добавить">
                                 <fa:ImageAwesome Icon="AddressCard"/>
                             </Button>
@@ -142,7 +142,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Запланировать" VerticalAlignment="Center"/>
                                     <!--<Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>-->
-                                    <fa:ImageAwesome Height="20" Margin="5, 0 ,0 ,0" Icon="ClockOutline"/>
+                                    <fa:ImageAwesome Margin="5, 0 ,0 ,0" Icon="ClockOutline"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
@@ -151,14 +151,15 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Отправить сейчас" VerticalAlignment="Center"/>
                                     <!--<Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>-->
-                                    <fa:ImageAwesome Height="20" Margin="5, 0 ,0 ,0" Icon="Send"/>
+                                    <fa:ImageAwesome Margin="5, 0 ,0 ,0" Icon="Send"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
-                        <Button>
+                        <Button x:Name="btnSendWithOwnParametrs" Click="BtnSendWithOwnParametrs_Click">
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Отправить со своими данными" VerticalAlignment="Center" TextWrapping="Wrap"/>
+                                    <TextBlock Text="Отправить со своими данными" VerticalAlignment="Center"/>
+                                    <fa:ImageAwesome Icon="Twitter"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>

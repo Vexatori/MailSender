@@ -10,19 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MailSender.Views
+namespace MailSender.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для SendWithOwnData.xaml
+    /// Логика взаимодействия для SendWithOwnDataWindow.xaml
     /// </summary>
-    public partial class SendWithOwnData : UserControl
+    public partial class SendWithOwnDataWindow : Window
     {
-        public SendWithOwnData()
+        public SendWithOwnDataWindow()
         {
             InitializeComponent();
+        }
+
+        private void BtnCancel_Click( object sender, RoutedEventArgs e )
+        {
+            this.Close();
         }
     }
 }

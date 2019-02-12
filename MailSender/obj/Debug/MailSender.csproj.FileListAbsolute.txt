@@ -92,3 +92,5 @@ C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientsView
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientsView.baml
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientEditor.g.cs
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientEditor.baml
+C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Windows\SendWithOwnDataWindow.g.cs
+C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Windows\SendWithOwnDataWindow.baml
