@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alex\source\repos\MailSender2\MailSender\App.xaml
-41426435173
+5883423311
 
-17920225716
+18319752543
 7957838068
-Controls\TabChanger.xaml;MainWindow.xaml;Views\RecipientEditor.xaml;Views\RecipientsView.xaml;
+Controls\TabChanger.xaml;MainWindow.xaml;Views\RecipientEditor.xaml;Views\RecipientsView.xaml;Views\SendWithOwnData.xaml;
 
 True
 

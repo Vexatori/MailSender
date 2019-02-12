@@ -5,8 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Interfaces;
 using MailSender.lib.MVVM;
@@ -18,30 +20,19 @@ namespace MailSender.ViewModel
     {
         private IRecipientsData _recipientsData;
 
-        //private ObservableCollection<Recipient> _recipients;
-
         private string _Title = "Рассыльщик почты";
 
-        public string Title
-        {
-            get => _Title;
-            set => Set( ref _Title, value );
-        }
+        public string Title { get => _Title; set => Set( ref _Title, value ); }
 
         private string _Status = "К спаму готов";
 
-        public string Status
-        {
-            get => _Status;
-            set => Set( ref _Status, value );
-        }
+        public string Status { get => _Status; set => Set( ref _Status, value ); }
 
-        public DateTime StatusTime
-        {
-            get => new Timer().Now;
-        }
+        public DateTime StatusTime { get => new Timer().Now; }
 
         public ObservableCollection<Recipient> Recipients { get; } = new ObservableCollection<Recipient>();
+
+        //private ObservableCollection<Recipient> _recipients;
 
         //public ObservableCollection<Recipient> Recipients
         //{
@@ -60,15 +51,18 @@ namespace MailSender.ViewModel
         private void OnUpdateRecipientsCommandExecuted()
         {
             Recipients.Clear();
-            foreach ( var recipient in _recipientsData.GetAll() )
-            {
-                Recipients.Add( recipient );
-            }
+            foreach ( var recipient in _recipientsData.GetAll() ) { Recipients.Add( recipient ); }
         }
+
+        private Recipient _currentRecipient;
+
+        public Recipient CurrentRecipient { get => _currentRecipient; set => Set( ref _currentRecipient, value ); }
+
+        public ICommand SaveRecipientCommand { get; }
 
         public MainWindowViewModel( IRecipientsData recipientsData )
         {
-            UpdateRecipientsCommand = new RelayCommand(OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted);
+            UpdateRecipientsCommand = new RelayCommand( OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted );
 
             _recipientsData = recipientsData;
         }

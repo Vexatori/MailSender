@@ -123,6 +123,7 @@
                         </Grid.ColumnDefinitions>
                         <views:RecipientsView Grid.Column="0"/>
                         <views:RecipientEditor Grid.Column="1"/>
+                        <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="5"></GridSplitter>
                     </Grid>
                 </DockPanel>
             </TabItem>

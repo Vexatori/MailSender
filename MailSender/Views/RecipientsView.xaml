@@ -30,7 +30,8 @@
                   HorizontalGridLinesBrush="{x:Null}" 
                   VerticalGridLinesBrush="DarkGray"
                   IsReadOnly="True"
-                  ItemsSource="{Binding Recipients}">
+                  ItemsSource="{Binding Recipients}"
+                  SelectedItem="{Binding CurrentRecipient}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
