@@ -35,7 +35,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
-                <DataGridTextColumn Header="Address" MinWidth="150" Binding="{Binding Address}"/>
+                <DataGridTextColumn Header="MailAddress" MinWidth="150" Binding="{Binding Address}"/>
             </DataGrid.Columns>
         </DataGrid>
     </DockPanel>

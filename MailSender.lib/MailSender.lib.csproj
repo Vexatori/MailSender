@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Debug\EmailSendServiceClass.cs" />
-    <Compile Include="Data\Debug\MailBoxes.cs" />
     <Compile Include="Data\Debug\SchedulerTasks.cs" />
     <Compile Include="Data\Debug\Senders.cs" />
     <Compile Include="Data\Debug\Servers.cs" />

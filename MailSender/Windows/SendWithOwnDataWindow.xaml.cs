@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using MailSender.lib.Data.Debug;
+
 namespace MailSender.Windows
 {
     /// <summary>
@@ -19,14 +21,28 @@ namespace MailSender.Windows
     /// </summary>
     public partial class SendWithOwnDataWindow : Window
     {
-        public SendWithOwnDataWindow()
-        {
-            InitializeComponent();
-        }
+        public SendWithOwnDataWindow() { InitializeComponent(); }
 
-        private void BtnCancel_Click( object sender, RoutedEventArgs e )
+        private void BtnCancel_Click( object sender, RoutedEventArgs e ) { this.Close(); }
+
+        private void BtnSend_Click( object sender, RoutedEventArgs e )
         {
-            this.Close();
+            string senderMail = tbxLogin.Text + ( cbSenderSMTP.SelectedItem as Server ).MailAddress;
+            string recipientMail = tbxRecipient.Text + ( cbRecipientSMTP.SelectedItem as Server ).MailAddress;
+            EmailSendServiceClass.GetMailProperties( tbxMailTopic.Text, 
+                                                     tbxMailText.Text, 
+                                                     recipientMail, 
+                                                     senderMail, 
+                                                     ( cbSenderSMTP.SelectedItem as Server ).Port, 
+                                                     ( cbSenderSMTP.SelectedItem as Server ).Address, 
+                                                     pbPassword.SecurePassword );
+
+            try
+            {
+                EmailSendServiceClass.SendMail();
+                MessageBox.Show( "Письмо отправлено" );
+            }
+            catch(Exception exc) { MessageBox.Show( "Письмо не отправлено" ); }
         }
     }
 }

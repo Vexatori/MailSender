@@ -16,6 +16,8 @@ namespace MailSender.lib.Data.Debug
         private static string messageTopic;
         private static string messageSender;
         private static string messageGetter;
+        private static int smtpPort;
+        private static string smtpServer;
         private static SecureString senderPassword;
 
         /// <summary>
@@ -30,37 +32,41 @@ namespace MailSender.lib.Data.Debug
                                               string text,
                                               string getter,
                                               string sender,
+                                              int port,
+                                              string smtp,
                                               SecureString password )
         {
             messageText = text;
             messageTopic = topic;
             messageGetter = getter;
             messageSender = sender;
+            smtpPort = port;
+            smtpServer = smtp;
             senderPassword = password;
         }
 
         /// <summary>
         /// Метод отправляет письмо
         /// </summary>
-        //public static void SendMail()
-        //{
-        //    using(message = new MailMessage())
-        //    {
-        //        message.From = new MailAddress(messageSender);
-        //        message.To.Add(messageGetter);
+        public static void SendMail()
+        {
+            using ( message = new MailMessage() )
+            {
+                message.From = new MailAddress( messageSender );
+                message.To.Add( messageGetter );
 
-        //        message.Subject = messageTopic;
-        //        message.Body = messageText;
-        //        message.IsBodyHtml = false;
+                message.Subject = messageTopic;
+                message.Body = messageText;
+                message.IsBodyHtml = false;
 
-        //        using(var client = new SmtpClient(MailYandex.SMTP, MailYandex.PORT))
-        //        {
-        //            client.EnableSsl = true;
+                using ( var client = new SmtpClient( smtpServer, smtpPort ) )
+                {
+                    client.EnableSsl = true;
 
-        //            client.Credentials = new NetworkCredential(messageSender, senderPassword);
-        //            client.Send(message);
-        //        }
-        //    }
-        //}
+                    client.Credentials = new NetworkCredential( messageSender, senderPassword );
+                    client.Send( message );
+                }
+            }
+        }
     }
 }

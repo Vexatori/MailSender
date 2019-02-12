@@ -15,14 +15,16 @@ namespace MailSender.lib.Data.Debug
                         Id = 1,
                         Name = "Yandex",
                         Address = "smtp.yandex.ru",
+                        MailAddress = "@yandex.ru",
                         Port = 25,
                         UseSSL = true
                 },
                 new Server()
                 {
                         Id = 2,
-                        Name = "Mail",
+                        Name = "MailAddress",
                         Address = "smtp.mail.ru",
+                        MailAddress = "@mail.ru",
                         Port = 25,
                         UseSSL = true
                 },
@@ -31,6 +33,7 @@ namespace MailSender.lib.Data.Debug
                         Id = 3,
                         Name = "Google",
                         Address = "smtp.gmail.com",
+                        MailAddress = "@gmail.com",
                         Port = 25,
                         UseSSL = true
                 }
@@ -42,6 +45,7 @@ namespace MailSender.lib.Data.Debug
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        public string MailAddress { get; set; }
         public int Port { get; set; } = 25;
         public bool UseSSL { get; set; }
     }

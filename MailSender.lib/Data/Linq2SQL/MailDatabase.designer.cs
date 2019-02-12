@@ -157,7 +157,7 @@ namespace MailSender.lib.Data.Linq2SQL
 					this.OnAddressChanging(value);
 					this.SendPropertyChanging();
 					this._Address = value;
-					this.SendPropertyChanged("Address");
+					this.SendPropertyChanged("MailAddress");
 					this.OnAddressChanged();
 				}
 			}

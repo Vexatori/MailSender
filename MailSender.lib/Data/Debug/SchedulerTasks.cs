@@ -12,15 +12,15 @@ namespace MailSender.lib.Data.Debug
         {
                 new SchedulerTask()
                 {
-                        Id = 1, Name = "Task 1", Time = DateTime.Now.AddHours( 1 ), Mail = "Mail 1"
+                        Id = 1, Name = "Task 1", Time = DateTime.Now.AddHours( 1 ), Mail = "MailAddress 1"
                 },
                 new SchedulerTask()
                 {
-                        Id = 2, Name = "Task 2", Time = DateTime.Now.AddHours( 2 ), Mail = "Mail 2"
+                        Id = 2, Name = "Task 2", Time = DateTime.Now.AddHours( 2 ), Mail = "MailAddress 2"
                 },
                 new SchedulerTask()
                 {
-                        Id = 3, Name = "Task 3", Time = DateTime.Now.AddHours( 3 ), Mail = "Mail 3"
+                        Id = 3, Name = "Task 3", Time = DateTime.Now.AddHours( 3 ), Mail = "MailAddress 3"
                 },
         };
     }

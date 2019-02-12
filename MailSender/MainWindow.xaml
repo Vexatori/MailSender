@@ -13,7 +13,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:views="clr-namespace:MailSender.Views"
         mc:Ignorable="d"
-        Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800"
+        Title="MailAddressSender" Icon="img/Mail.ico"  Height="450" Width="800"
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
     <Window.Resources>
         <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
