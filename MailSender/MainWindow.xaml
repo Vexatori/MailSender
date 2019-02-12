@@ -122,6 +122,7 @@
                             <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
                         <views:RecipientsView Grid.Column="0"/>
+                        <views:RecipientEditor Grid.Column="1"/>
                     </Grid>
                 </DockPanel>
             </TabItem>

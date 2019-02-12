@@ -15,7 +15,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <DockPanel Margin="5">
-        <TextBlock DockPanel.Dock="Top" Text="Получатели писем" HorizontalAlignment="Center" Padding="3" FontSize="15" FontWeight="Bold" Margin="0, 0, 0, 3"/>
+        <TextBlock DockPanel.Dock="Top" Text="Получатели писем" HorizontalAlignment="Center" Padding="3" FontSize="15" Margin="0, 0, 0, 3"/>
         <DockPanel DockPanel.Dock="Top" Margin="3, 0, 3, 5">
             <TextBlock Text="Поиск:" Padding="3"/>
             <TextBox></TextBox>
