@@ -2,6 +2,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using MailSender.lib;
+using MailSender.lib.Data.Debug;
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Interfaces;
 

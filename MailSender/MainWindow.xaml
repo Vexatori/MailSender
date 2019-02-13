@@ -193,12 +193,25 @@
                 <DockPanel>
                     <GroupBox Header="Письма">
                         <DockPanel MinWidth="150" MaxWidth="200">
-                            <Button Content="Создать" DockPanel.Dock="Bottom"></Button>
-                            <Button Content="Сохранить" DockPanel.Dock="Bottom"></Button>
-                            <ListBox></ListBox>
+                            <Button Name="btnNewMail" Content="Создать" DockPanel.Dock="Bottom" Click="BtnNewMail_Click"></Button>
+                            <Button Name="btnSaveMail" Content="Сохранить" DockPanel.Dock="Bottom" Click="BtnSaveMail_Click"></Button>
+                            <ListView ItemsSource="{Binding Source={x:Static dd:Mails.Items}}" Name="lvMails">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Topic}" Header="Тема письма"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
                         </DockPanel>
                     </GroupBox>
-                    <GroupBox Header="Текст письма"></GroupBox>
+                    <DockPanel>
+                        <GroupBox Header="Тема письма" DockPanel.Dock="Top">
+                            <TextBox Name="tbxMailTopic" Text="{Binding SelectedItem.Topic, ElementName=lvMails}"/>
+                        </GroupBox>
+                        <GroupBox Header="Текст письма">
+                            <TextBox Name="tbxMailText" Text="{Binding SelectedItem.Text, ElementName=lvMails}"/>
+                        </GroupBox>
+                    </DockPanel>
                 </DockPanel>
             </TabItem>
             <!--<TabItem Header="Статистика" IsEnabled="False"></TabItem>-->
