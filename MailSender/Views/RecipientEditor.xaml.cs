@@ -20,9 +20,13 @@ namespace MailSender.Views
     /// </summary>
     public partial class RecipientEditor : UserControl
     {
-        public RecipientEditor()
+        public RecipientEditor() { InitializeComponent(); }
+
+        private void Validation_OnError( object sender, ValidationErrorEventArgs e )
         {
-            InitializeComponent();
+            if ( !( sender is Control control) ) return;
+            if ( e.Action == ValidationErrorEventAction.Added ) { control.ToolTip = e.Error.ErrorContent.ToString(); }
+            else { control.ToolTip = null; }
         }
     }
 }
