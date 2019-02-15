@@ -34,6 +34,7 @@ namespace MailSender.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainWindowViewModel>();
+            SimpleIoc.Default.Register<SendWithOwnDataWindowViewModel>();
             SimpleIoc.Default.Register<IRecipientsData, InMemoryRecipientsData>();
             //SimpleIoc.Default.Register<IRecipientsData, InLinq2SQLRecipientsData>();
             if(!SimpleIoc.Default.IsRegistered<MailDatabaseContext>())
@@ -43,6 +44,8 @@ namespace MailSender.ViewModel
         public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
 
         public MainWindowViewModel MainWindowModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
+
+        public SendWithOwnDataWindowViewModel SendWithOwnDataWindowModel => ServiceLocator.Current.GetInstance<SendWithOwnDataWindowViewModel>();
 
         public static void Cleanup()
         {

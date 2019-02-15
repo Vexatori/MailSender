@@ -21,16 +21,6 @@ namespace MailSender.ViewModel
     {
         private IRecipientsData _recipientsData;
 
-        private string _Title = "Рассыльщик почты";
-
-        public string Title { get => _Title; set => Set( ref _Title, value ); }
-
-        private string _Status = "К спаму готов";
-
-        public string Status { get => _Status; set => Set( ref _Status, value ); }
-
-        public DateTime StatusTime { get => new Timer().Now; }
-
         public ObservableCollection<Recipient> Recipients { get; } = new ObservableCollection<Recipient>();
 
         //private ObservableCollection<Recipient> _recipients;

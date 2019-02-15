@@ -49,7 +49,7 @@ namespace MailSender
             sendWithOwnData.ShowDialog();
         }
 
-        private void BtnNewMail_Click( object sender, RoutedEventArgs e ) { Mails.AddNew( new Mail { Topic = tbxMailTopic.Text, Text = tbxMailText.Text } ); }
+        private void BtnNewMail_Click( object sender, RoutedEventArgs e ) { }
 
         private void BtnSaveMail_Click( object sender, RoutedEventArgs e ) { }
     }

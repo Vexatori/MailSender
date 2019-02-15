@@ -96,6 +96,7 @@
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\SendWithOwnDataWindowViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\RecipientEditor.xaml.cs">
       <DependentUpon>RecipientEditor.xaml</DependentUpon>

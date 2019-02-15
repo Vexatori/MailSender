@@ -25,24 +25,24 @@ namespace MailSender.Windows
 
         private void BtnCancel_Click( object sender, RoutedEventArgs e ) { this.Close(); }
 
-        private void BtnSend_Click( object sender, RoutedEventArgs e )
-        {
-            string senderMail = tbxLogin.Text + ( cbSenderSMTP.SelectedItem as Server ).MailAddress;
-            string recipientMail = tbxRecipient.Text + ( cbRecipientSMTP.SelectedItem as Server ).MailAddress;
-            EmailSendServiceClass.GetMailProperties( tbxMailTopic.Text, 
-                                                     tbxMailText.Text, 
-                                                     recipientMail, 
-                                                     senderMail, 
-                                                     ( cbSenderSMTP.SelectedItem as Server ).Port, 
-                                                     ( cbSenderSMTP.SelectedItem as Server ).Address, 
-                                                     pbPassword.SecurePassword );
+        //private void BtnSend_Click( object sender, RoutedEventArgs e )
+        //{
+        //    string senderMail = tbxLogin.Text + ( cbSenderSMTP.SelectedItem as Server ).MailAddress;
+        //    string recipientMail = tbxRecipient.Text + ( cbRecipientSMTP.SelectedItem as Server ).MailAddress;
+        //    EmailSendServiceClass.GetMailProperties( tbxMailTopic.Text, 
+        //                                             tbxMailText.Text, 
+        //                                             recipientMail, 
+        //                                             senderMail, 
+        //                                             ( cbSenderSMTP.SelectedItem as Server ).Port, 
+        //                                             ( cbSenderSMTP.SelectedItem as Server ).Address, 
+        //                                             pbPassword.SecurePassword );
 
-            try
-            {
-                EmailSendServiceClass.SendMail();
-                MessageBox.Show( "Письмо отправлено" );
-            }
-            catch(Exception exc) { MessageBox.Show( "Письмо не отправлено" ); }
-        }
+        //    try
+        //    {
+        //        EmailSendServiceClass.SendMail();
+        //        MessageBox.Show( "Письмо отправлено" );
+        //    }
+        //    catch(Exception exc) { MessageBox.Show( "Письмо не отправлено" ); }
+        //}
     }
 }
