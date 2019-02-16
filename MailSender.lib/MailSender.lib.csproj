@@ -56,7 +56,10 @@
     <Compile Include="InLinq2SQLRecipientsData.cs" />
     <Compile Include="InMemoryRecipientsData.cs" />
     <Compile Include="Interfaces\IMailsData.cs" />
+    <Compile Include="Interfaces\IMailSender.cs" />
+    <Compile Include="Interfaces\IMailService.cs" />
     <Compile Include="Interfaces\IRecipientsData.cs" />
+    <Compile Include="MailService.cs" />
     <Compile Include="MVVM\LamdaCommand.cs" />
     <Compile Include="MVVM\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

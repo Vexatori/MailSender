@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -57,7 +58,12 @@ namespace MailSender.ViewModel
             var password = passwordBox.SecurePassword;
             string strSMTP = $"smtp.{MessageSender.Split( '@' ).Last()}";
             EmailSendServiceClass.GetMailProperties( _messageTopic, _messageText, _messageGetter, _messageSender, _smtpPort, strSMTP, password );
-            EmailSendServiceClass.SendMail();
+            try
+            {
+                EmailSendServiceClass.SendMail();
+                MessageBox.Show( "Письмо отправлено" );
+            }
+            catch ( Exception exception ) { MessageBox.Show( "Письмо не отправлено" ); }
         }
 
         public SendWithOwnDataWindowViewModel()
