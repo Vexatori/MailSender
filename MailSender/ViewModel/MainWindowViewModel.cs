@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 using GalaSoft.MvvmLight;
@@ -51,11 +52,50 @@ namespace MailSender.ViewModel
 
         public ICommand SaveRecipientCommand { get; }
 
-        public MainWindowViewModel( IRecipientsData recipientsData )
+        public MainWindowViewModel( IRecipientsData recipientsData, IMailsData mailsData )
         {
             UpdateRecipientsCommand = new RelayCommand( OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted );
 
             _recipientsData = recipientsData;
+
+            NewMailCommand = new RelayCommand(OnNewMailCommandExecuted, CanNewMailCommandExecuted);
+
+            _mailsData = mailsData;
+        }
+
+        private IMailsData _mailsData;
+
+        //private Mail _currentMail = new Mail();
+
+        //public Mail CurrentMail
+        //{
+        //    get
+        //    {
+        //        return _currentMail;
+        //    }
+        //    set
+        //    {
+        //        Set( ref _currentMail, value );
+        //    }
+        //}
+
+        private string _mailTopic = String.Empty;
+
+        private string _mailText = String.Empty;
+
+        public string MailTopic { get => _mailTopic; set => Set( ref _mailTopic, value ); }
+
+        public string MailText { get => _mailText; set => Set(ref _mailText, value); }
+
+        public Mails MailData { get; } = new Mails();
+
+        public ICommand NewMailCommand { get; }
+
+        private bool CanNewMailCommandExecuted() => true;
+
+        private void OnNewMailCommandExecuted()
+        {
+            MailData.AddNew(_mailTopic, _mailText);
         }
     }
 }

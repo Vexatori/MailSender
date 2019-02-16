@@ -33,5 +33,18 @@ namespace MailSender.lib.MVVM
         {
             _onExecute( parameter );
         }
+
+        private readonly Action<object, object> _onExecuteMail;
+        private readonly Func<object, object, bool> _canExecuteMail;
+
+        public LamdaCommand( Action<object, object> OnExecute, Func<object, object, bool> CanExecute = null )
+        {
+            _onExecuteMail = OnExecute;
+            _canExecuteMail = CanExecute;
+        }
+
+        public bool CanExecuteMail( object parametr1, object parametr2 ) { return _canExecuteMail?.Invoke( parametr1, parametr2 ) ?? true; }
+
+        public void Execute( object parametr1, object parametr2 ) { _onExecuteMail( parametr1, parametr2 ); }
     }
 }

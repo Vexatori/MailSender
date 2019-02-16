@@ -48,9 +48,5 @@ namespace MailSender
             SendWithOwnDataWindow sendWithOwnData = new SendWithOwnDataWindow();
             sendWithOwnData.ShowDialog();
         }
-
-        private void BtnNewMail_Click( object sender, RoutedEventArgs e ) { }
-
-        private void BtnSaveMail_Click( object sender, RoutedEventArgs e ) { }
     }
 }
