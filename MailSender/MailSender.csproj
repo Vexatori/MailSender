@@ -92,7 +92,6 @@
     <Compile Include="Controls\TabChanger.xaml.cs">
       <DependentUpon>TabChanger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UtilityClasses\MultiConverter.cs" />
     <Compile Include="UtilityClasses\Timer.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

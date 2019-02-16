@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 using MailSender.lib.Interfaces;
@@ -51,6 +52,14 @@ namespace MailSender.lib
             {
                 _client.Send( msg );
             }
+        }
+
+        public void SendAsync( string SenderAddress, string RecipientAddress, string Subject, string Body )
+        {
+            var thread = new Thread( () => Send( SenderAddress, RecipientAddress, Subject, Body ) );
+            thread.Priority = ThreadPriority.BelowNormal;
+            thread.IsBackground = true;
+            thread.Start();
         }
     }
 }

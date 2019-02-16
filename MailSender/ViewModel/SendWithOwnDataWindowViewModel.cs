@@ -18,20 +18,6 @@ namespace MailSender.ViewModel
 {
     public class SendWithOwnDataWindowViewModel : ViewModelBase
     {
-        //public string MessageText { get; set; }
-
-        //public string MessageTopic { get; set; }
-
-        //public string MessageSender { get; set; }
-
-        //public string MessageGetter { get; set; }
-
-        //public int SMTPPort => 25;
-
-        //public string SMTPServer { get; set; }
-
-        //public SecureString SenderPassword { get; set; }
-
         private string _messageText = String.Empty;
         private string _messageTopic = String.Empty;
         private string _messageSender = String.Empty;
@@ -61,7 +47,6 @@ namespace MailSender.ViewModel
             try
             {
                 EmailSendServiceClass.SendMail();
-                MessageBox.Show( "Письмо отправлено" );
             }
             catch ( Exception exception ) { MessageBox.Show( "Письмо не отправлено" ); }
         }
