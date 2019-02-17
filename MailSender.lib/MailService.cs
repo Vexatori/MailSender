@@ -61,5 +61,18 @@ namespace MailSender.lib
             thread.IsBackground = true;
             thread.Start();
         }
+
+        public void Send( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
+        {
+            foreach ( var recipientAddress in RecipientsAddresses )
+            {
+                Send( SenderAddress, recipientAddress, Subject, Body );
+            }
+        }
+
+        public void SendAsync( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
+        {
+            foreach ( var recipientAddress in RecipientsAddresses ) { ThreadPool.QueueUserWorkItem( m => Send( SenderAddress, recipientAddress, Subject, Body ) ); }
+        }
     }
 }

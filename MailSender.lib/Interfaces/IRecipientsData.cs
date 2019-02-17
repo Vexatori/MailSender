@@ -7,16 +7,8 @@ using MailSender.lib.Data.Linq2SQL;
 
 namespace MailSender.lib.Interfaces
 {
-    public interface IRecipientsData
+    public interface IRecipientsData : IData<Recipient>
     {
-        IEnumerable<Recipient> GetAll();
 
-        Recipient GetById( int id );
-
-        void AddNew( Recipient newRecipient );
-
-        void Delete( int id );
-
-        void SaveChanges();
     }
 }

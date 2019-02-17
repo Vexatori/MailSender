@@ -13,5 +13,7 @@ namespace MailSender.lib.Interfaces
         void SendAsync( string SenderAddress, string RecipientAddress, string Subject, string Body );
 
         void Send( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body );
+
+        void SendAsync( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body );
     }
 }

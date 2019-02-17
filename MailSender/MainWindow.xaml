@@ -17,7 +17,6 @@
         DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
     <Window.Resources>
         <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
-        <timer:MultiConverter x:Key="MultiConverter"/>
         <Style TargetType="{x:Type fa:ImageAwesome}">
             <Setter Property="Height" Value="15"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
@@ -196,23 +195,24 @@
                         <DockPanel MinWidth="150" MaxWidth="200">
                             <Button Name="btnNewMail" Content="Создать" DockPanel.Dock="Bottom" Command="{Binding NewMailCommand}"></Button>
                             <Button Name="btnSaveMail" Content="Сохранить" DockPanel.Dock="Bottom"></Button>
-                            <ListView ItemsSource="{Binding MailData.Items}" Name="lvMails" SelectionMode="Single">
+                            <ListView ItemsSource="{Binding MailsItems}" SelectedItem="{Binding SelectedMail}" Name="lvMails" SelectionMode="Single">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn DisplayMemberBinding="{Binding Topic}" Header="Тема письма"/>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
+                            <!--<ListBox ItemsSource="{Binding MailsItems}" SelectedItem="{Binding SelectedMail}" Name="lvMails" SelectionMode="Single" DisplayMemberPath="Topic"/>-->
                         </DockPanel>
                     </GroupBox>
-                    <DockPanel>
+                    <DockPanel DataContext="{Binding SelectedMail}">
                         <GroupBox Header="Тема письма" DockPanel.Dock="Top">
                             <!--<TextBox Name="tbxMailTopic" Text="{Binding SelectedItem.Topic, ElementName=lvMails}"/>-->
-                            <TextBox Name="tbxMailTopic" Text="{Binding MailTopic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <TextBox Name="tbxMailTopic" Text="{Binding Topic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </GroupBox>
                         <GroupBox Header="Текст письма">
                             <!--<TextBox Name="tbxMailText" Text="{Binding SelectedItem.Text, ElementName=lvMails}"/>-->
-                            <TextBox Name="tbxMailText" Text="{Binding MailText, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                            <TextBox Name="tbxMailText" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
                         </GroupBox>
                     </DockPanel>
                 </DockPanel>

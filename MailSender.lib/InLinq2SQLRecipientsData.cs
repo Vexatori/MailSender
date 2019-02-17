@@ -23,7 +23,7 @@ namespace MailSender.lib
             _database.Recipient.InsertOnSubmit( newRecipient );
         }
 
-        public void Delete( int id )
+        public void DeleteById( int id )
         {
             var recipient = GetById( id );
             if ( recipient == null ) return;
@@ -40,7 +40,7 @@ namespace MailSender.lib
             return _database.Recipient.FirstOrDefault( r => r.Id == id );
         }
 
-        public void SaveChanges()
+        public void Save()
         {
             _database.SubmitChanges();
         }

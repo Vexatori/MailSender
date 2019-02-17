@@ -34,7 +34,7 @@ namespace MailSender.lib
             _recipients.Add( newRecipient );
         }
 
-        public void Delete( int id )
+        public void DeleteById( int id )
         {
             var recipient = GetById( id );
             if ( recipient == null ) return;

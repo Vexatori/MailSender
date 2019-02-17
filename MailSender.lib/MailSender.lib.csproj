@@ -54,7 +54,9 @@
       <DependentUpon>MailDatabase.dbml</DependentUpon>
     </Compile>
     <Compile Include="InLinq2SQLRecipientsData.cs" />
+    <Compile Include="InMemoryMailsData.cs" />
     <Compile Include="InMemoryRecipientsData.cs" />
+    <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Interfaces\IMailsData.cs" />
     <Compile Include="Interfaces\IMailSender.cs" />
     <Compile Include="Interfaces\IMailService.cs" />

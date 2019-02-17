@@ -37,7 +37,7 @@ namespace MailSender.ViewModel
             SimpleIoc.Default.Register<SendWithOwnDataWindowViewModel>();
 
             SimpleIoc.Default.Register<IRecipientsData, InMemoryRecipientsData>();
-            SimpleIoc.Default.Register<IMailsData, Mails>();
+            SimpleIoc.Default.Register<IMailsData, InMemoryMailsData>();
 
             //SimpleIoc.Default.Register<IMailService, MailService>();
 

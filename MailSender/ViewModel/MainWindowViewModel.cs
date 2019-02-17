@@ -65,29 +65,15 @@ namespace MailSender.ViewModel
 
         private IMailsData _mailsData;
 
-        //private Mail _currentMail = new Mail();
+        public ObservableCollection<Mail> MailsItems { get; } = new ObservableCollection<Mail>();
 
-        //public Mail CurrentMail
-        //{
-        //    get
-        //    {
-        //        return _currentMail;
-        //    }
-        //    set
-        //    {
-        //        Set( ref _currentMail, value );
-        //    }
-        //}
+        private Mail _selectedMail = new Mail();
 
-        private string _mailTopic = String.Empty;
-
-        private string _mailText = String.Empty;
-
-        public string MailTopic { get => _mailTopic; set => Set( ref _mailTopic, value ); }
-
-        public string MailText { get => _mailText; set => Set(ref _mailText, value); }
-
-        public Mails MailData { get; } = new Mails();
+        public Mail SelectedMail
+        {
+            get => _selectedMail;
+            set => Set( ref _selectedMail, value );
+        }
 
         public ICommand NewMailCommand { get; }
 
@@ -95,7 +81,11 @@ namespace MailSender.ViewModel
 
         private void OnNewMailCommandExecuted()
         {
-            MailData.AddNew(_mailTopic, _mailText);
+            string topic = _selectedMail.Topic;
+            string text = _selectedMail.Text;
+            var mail = new Mail() { Text = text, Topic = topic };
+            _mailsData.AddNew(mail);
+            MailsItems.Add( mail );
         }
     }
 }
