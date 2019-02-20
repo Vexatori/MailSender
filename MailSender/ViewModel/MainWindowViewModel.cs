@@ -21,8 +21,8 @@ namespace MailSender.ViewModel
     public class MainWindowViewModel : ViewModelBase
     {
         private IRecipientsData _recipientsData;
-
-        public ObservableCollection<Recipient> Recipients { get; } = new ObservableCollection<Recipient>();
+        private IMailService _mailService;
+        private IMailsData _mailsData;
 
         //private ObservableCollection<Recipient> _recipients;
 
@@ -36,6 +36,23 @@ namespace MailSender.ViewModel
         //    }
         //}
 
+        public MainWindowViewModel( IRecipientsData recipientsData, IMailsData mailsData, IMailService mailService )
+        {
+            UpdateRecipientsCommand = new RelayCommand(OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted);
+
+            _recipientsData = recipientsData;
+
+            NewMailCommand = new RelayCommand(OnNewMailCommandExecuted, CanNewMailCommandExecuted);
+
+            _mailsData = mailsData;
+
+            _mailService = mailService;
+        }
+
+        #region RecipientsCode
+
+        public ObservableCollection<Recipient> Recipients { get; } = new ObservableCollection<Recipient>();
+
         public ICommand UpdateRecipientsCommand { get; }
 
         private bool CanUpdateRecipientsCommandExecuted() => true;
@@ -43,27 +60,20 @@ namespace MailSender.ViewModel
         private void OnUpdateRecipientsCommandExecuted()
         {
             Recipients.Clear();
-            foreach ( var recipient in _recipientsData.GetAll() ) { Recipients.Add( recipient ); }
+            foreach(var recipient in _recipientsData.GetAll()) { Recipients.Add(recipient); }
         }
 
         private Recipient _currentRecipient;
 
-        public Recipient CurrentRecipient { get => _currentRecipient; set => Set( ref _currentRecipient, value ); }
+        public Recipient CurrentRecipient { get => _currentRecipient; set => Set(ref _currentRecipient, value); }
 
         public ICommand SaveRecipientCommand { get; }
 
-        public MainWindowViewModel( IRecipientsData recipientsData, IMailsData mailsData )
-        {
-            UpdateRecipientsCommand = new RelayCommand( OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted );
+        #endregion
 
-            _recipientsData = recipientsData;
 
-            NewMailCommand = new RelayCommand(OnNewMailCommandExecuted, CanNewMailCommandExecuted);
 
-            _mailsData = mailsData;
-        }
-
-        private IMailsData _mailsData;
+        #region MailsCode
 
         public ObservableCollection<Mail> MailsItems { get; } = new ObservableCollection<Mail>();
 
@@ -72,7 +82,7 @@ namespace MailSender.ViewModel
         public Mail SelectedMail
         {
             get => _selectedMail;
-            set => Set( ref _selectedMail, value );
+            set => Set(ref _selectedMail, value);
         }
 
         public ICommand NewMailCommand { get; }
@@ -85,7 +95,9 @@ namespace MailSender.ViewModel
             string text = _selectedMail.Text;
             var mail = new Mail() { Text = text, Topic = topic };
             _mailsData.AddNew(mail);
-            MailsItems.Add( mail );
+            MailsItems.Add(mail);
         }
+
+        #endregion
     }
 }
