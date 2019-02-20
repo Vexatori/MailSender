@@ -41,7 +41,7 @@ namespace MailSender.ViewModel
             SimpleIoc.Default.Register<IRecipientsData, InMemoryRecipientsData>();
             SimpleIoc.Default.Register<IMailsData, InMemoryMailsData>();
 
-            //SimpleIoc.Default.Register<IMailService, MailService>();
+            SimpleIoc.Default.Register<IMailService, MailService>();
             //SimpleIoc.Default.Register<IMailService, DebugMailService>();
 
             //SimpleIoc.Default.Register<IRecipientsData, InLinq2SQLRecipientsData>();
