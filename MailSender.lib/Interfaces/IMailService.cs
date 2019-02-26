@@ -9,10 +9,6 @@ namespace MailSender.lib.Interfaces
 {
     public interface IMailService
     {
-        IMailSender GetSender( string Address,
-                               int Port,
-                               bool SSL,
-                               string Login,
-                               SecureString Password );
+        IMailSender GetSender( string Address, int Port, bool SSL, string Login, SecureString Password );
     }
 }

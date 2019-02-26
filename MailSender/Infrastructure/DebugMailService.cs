@@ -11,13 +11,9 @@ namespace MailSender.Infrastructure
 {
     internal class DebugMailService : IMailService
     {
-        public IMailSender GetSender( string Address,
-                                      int Port,
-                                      bool SSL,
-                                      string Login,
-                                      SecureString Password )
+        public IMailSender GetSender( string Address, int Port, bool SSL, string Login, SecureString Password )
         {
-            return new DebugMailSender(Address, Port, SSL, Login, Password);
+            return new DebugMailSender( Address, Port, SSL, Login, Password );
         }
     }
 }

@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -43,16 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Debug\EmailSendServiceClass.cs" />
-    <Compile Include="Data\Debug\Mails.cs" />
-    <Compile Include="Data\Debug\SchedulerTasks.cs" />
-    <Compile Include="Data\Debug\Senders.cs" />
-    <Compile Include="Data\Debug\Servers.cs" />
+    <Compile Include="Data\Context\MailDatabaseContext.cs" />
+    <Compile Include="Data\MailsList.cs" />
+    <Compile Include="Data\Recipient.cs" />
+    <Compile Include="Data\SchedulerTask.cs" />
+    <Compile Include="Data\SendingList.cs" />
+    <Compile Include="Services\EmailSendServiceClass.cs" />
+    <Compile Include="Data\SchedulerTasks.cs" />
+    <Compile Include="Data\Senders.cs" />
+    <Compile Include="Data\Sender.cs" />
+    <Compile Include="Data\Servers.cs" />
     <Compile Include="Data\Linq2SQL\MailDatabase.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MailDatabase.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Mail.cs" />
+    <Compile Include="Data\Mails.cs" />
+    <Compile Include="Data\Server.cs" />
     <Compile Include="InLinq2SQLRecipientsData.cs" />
     <Compile Include="InMemoryMailsData.cs" />
     <Compile Include="InMemoryRecipientsData.cs" />
@@ -83,6 +98,7 @@
     <None Include="Data\Linq2SQL\MailDatabase.dbml.layout">
       <DependentUpon>MailDatabase.dbml</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

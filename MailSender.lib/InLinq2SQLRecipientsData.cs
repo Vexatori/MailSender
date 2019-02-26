@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using MailSender.lib.Data.Linq2SQL;
 using MailSender.lib.Interfaces;
 
@@ -23,6 +24,11 @@ namespace MailSender.lib
             _database.Recipient.InsertOnSubmit( newRecipient );
         }
 
+        public async Task AddNewAsync( Recipient newItem )
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteById( int id )
         {
             var recipient = GetById( id );
@@ -30,9 +36,29 @@ namespace MailSender.lib
             _database.Recipient.DeleteOnSubmit( recipient );
         }
 
+        public async Task DeleteByIdAsync( int id )
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
+        {
+            _database.SubmitChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Recipient> GetAll()
         {
             return _database.Recipient.AsEnumerable();
+        }
+
+        public Task<IEnumerable<Recipient>> GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
 
         public Recipient GetById( int id )
@@ -40,9 +66,9 @@ namespace MailSender.lib
             return _database.Recipient.FirstOrDefault( r => r.Id == id );
         }
 
-        public void Save()
+        public Task<Recipient> GetByIdAsync( int id )
         {
-            _database.SubmitChanges();
+            throw new NotImplementedException();
         }
     }
 }

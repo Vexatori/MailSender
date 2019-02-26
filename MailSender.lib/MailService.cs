@@ -14,11 +14,7 @@ namespace MailSender.lib
 {
     public class MailService : IMailService
     {
-        public IMailSender GetSender( string Address,
-                                      int Port,
-                                      bool SSL,
-                                      string Login,
-                                      SecureString Password )
+        public IMailSender GetSender( string Address, int Port, bool SSL, string Login, SecureString Password )
         {
             return new MailSender( Address, Port, SSL, Login, Password );
         }
@@ -28,17 +24,9 @@ namespace MailSender.lib
     {
         private readonly SmtpClient _client;
 
-        public MailSender( string Address,
-                           int Port,
-                           bool SSl,
-                           string Login,
-                           SecureString Password )
+        public MailSender( string Address, int Port, bool SSl, string Login, SecureString Password )
         {
-            _client = new SmtpClient(Address, Port)
-            {
-                    Credentials = new NetworkCredential(Login, Password),
-                    EnableSsl = SSl
-            };
+            _client = new SmtpClient( Address, Port ) { Credentials = new NetworkCredential( Login, Password ), EnableSsl = SSl };
         }
 
         public void Dispose()
@@ -48,18 +36,26 @@ namespace MailSender.lib
 
         public void Send( string SenderAddress, string RecipientAddress, string Subject, string Body )
         {
-            using ( var msg = new MailMessage(SenderAddress, RecipientAddress, Subject, Body) )
+            using ( var msg = new MailMessage( SenderAddress, RecipientAddress, Subject, Body ) )
             {
                 _client.Send( msg );
             }
         }
 
-        public void SendAsync( string SenderAddress, string RecipientAddress, string Subject, string Body )
+        public void SendParallel( string SenderAddress, string RecipientAddress, string Subject, string Body )
         {
             var thread = new Thread( () => Send( SenderAddress, RecipientAddress, Subject, Body ) );
             thread.Priority = ThreadPriority.BelowNormal;
             thread.IsBackground = true;
             thread.Start();
+        }
+
+        public async Task SendAsync( string SenderAddress, string RecipientAddress, string Subject, string Body )
+        {
+            using ( var msg = new MailMessage( SenderAddress, RecipientAddress, Subject, Body ) )
+            {
+                await _client.SendMailAsync( msg ).ConfigureAwait( false );
+            }
         }
 
         public void Send( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
@@ -70,9 +66,17 @@ namespace MailSender.lib
             }
         }
 
-        public void SendAsync( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
+        public void SendParallel( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
         {
-            foreach ( var recipientAddress in RecipientsAddresses ) { ThreadPool.QueueUserWorkItem( m => Send( SenderAddress, recipientAddress, Subject, Body ) ); }
+            foreach ( var recipientAddress in RecipientsAddresses )
+            {
+                ThreadPool.QueueUserWorkItem( m => Send( SenderAddress, recipientAddress, Subject, Body ) );
+            }
+        }
+
+        public Task SendAsync( string SenderAddress, IEnumerable<string> RecipientsAddresses, string Subject, string Body )
+        {
+            return Task.WhenAll( RecipientsAddresses.Select( address => SendAsync( SenderAddress, address, Subject, Body ) ) );
         }
     }
 }

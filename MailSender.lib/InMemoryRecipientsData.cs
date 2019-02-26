@@ -22,9 +22,19 @@ namespace MailSender.lib
             return _recipients;
         }
 
+        public Task<IEnumerable<Recipient>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Recipient GetById( int id )
         {
             return _recipients.FirstOrDefault( r => r.Id == id );
+        }
+
+        public Task<Recipient> GetByIdAsync( int id )
+        {
+            throw new NotImplementedException();
         }
 
         public void AddNew( Recipient newRecipient )
@@ -34,6 +44,11 @@ namespace MailSender.lib
             _recipients.Add( newRecipient );
         }
 
+        public Task AddNewAsync( Recipient newItem )
+        {
+            throw new NotImplementedException();
+        }
+
         public void DeleteById( int id )
         {
             var recipient = GetById( id );
@@ -41,9 +56,19 @@ namespace MailSender.lib
             _recipients.Remove( recipient );
         }
 
+        public Task DeleteByIdAsync( int id )
+        {
+            throw new NotImplementedException();
+        }
+
         public void SaveChanges()
         {
 
+        }
+
+        public Task SaveChangesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

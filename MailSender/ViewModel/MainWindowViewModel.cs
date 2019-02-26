@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -91,11 +92,25 @@ namespace MailSender.ViewModel
 
         private void OnNewMailCommandExecuted()
         {
-            string topic = _selectedMail.Topic;
-            string text = _selectedMail.Text;
+            string topic = String.Empty;
+            string text = String.Empty;
+
+            if ( _selectedMail.Topic == String.Empty )
+            {
+                var index = MailsItems.Count == 0 ? 0 : MailsItems.Count(m => Regex.IsMatch(m.Topic, @"^Mail( \d+)?$")) + 1;
+                topic = index == 0 ? "Mail" : $"Mail {index}";
+            }
+            else
+            {
+                topic = _selectedMail.Topic;
+            }
+
+            if ( _selectedMail.Text == String.Empty ) { text = "Mail body"; }
+            else { text = _selectedMail.Text; }
+
             var mail = new Mail() { Text = text, Topic = topic };
-            _mailsData.AddNew(mail);
-            MailsItems.Add(mail);
+            _mailsData.AddNew( mail );
+            MailsItems.Add( mail );
         }
 
         #endregion

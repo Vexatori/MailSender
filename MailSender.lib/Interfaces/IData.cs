@@ -10,12 +10,22 @@ namespace MailSender.lib.Interfaces
     {
         IEnumerable<T> GetAll();
 
+        Task<IEnumerable<T>> GetAllAsync();
+
         T GetById( int id );
+
+        Task<T> GetByIdAsync( int id );
 
         void AddNew( T newItem );
 
+        Task AddNewAsync( T newItem );
+
         void DeleteById( int id );
 
-        //void Save( T changedItem );
+        Task DeleteByIdAsync( int id );
+
+        void SaveChanges(  );
+
+        Task SaveChangesAsync();
     }
 }
