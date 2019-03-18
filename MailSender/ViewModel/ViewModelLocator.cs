@@ -4,8 +4,7 @@ using GalaSoft.MvvmLight.Ioc;
 
 using MailSender.Infrastructure;
 using MailSender.lib;
-using MailSender.lib.Data.Debug;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Data;
 using MailSender.lib.Interfaces;
 
 namespace MailSender.ViewModel
@@ -34,22 +33,24 @@ namespace MailSender.ViewModel
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MainWindowViewModel>();
             SimpleIoc.Default.Register<SendWithOwnDataWindowViewModel>();
+            SimpleIoc.Default.Register<MailSender.lib.Data.Context.MailDatabaseContext>();
 
-            SimpleIoc.Default.Register<IRecipientsData, InMemoryRecipientsData>();
+            //SimpleIoc.Default.Register<IRecipientsData, InMemoryRecipientsData>();
+
+            SimpleIoc.Default.Register<IRecipientsData, EFRecipientsData>();
+
             SimpleIoc.Default.Register<IMailsData, InMemoryMailsData>();
 
             SimpleIoc.Default.Register<IMailService, MailService>();
             //SimpleIoc.Default.Register<IMailService, DebugMailService>();
 
-            //SimpleIoc.Default.Register<IRecipientsData, InLinq2SQLRecipientsData>();
-            if(!SimpleIoc.Default.IsRegistered<MailDatabaseContext>())
-                SimpleIoc.Default.Register<MailDatabaseContext>(()=>new MailDatabaseContext());
-        }
+            SimpleIoc.Default.Register<IServersData, EFServersData>();
 
-        public MainViewModel Main => ServiceLocator.Current.GetInstance<MainViewModel>();
+            //if(!SimpleIoc.Default.IsRegistered<MailDatabaseContext>())
+            //    SimpleIoc.Default.Register<MailDatabaseContext>(()=>new MailDatabaseContext());
+        }
 
         public MainWindowViewModel MainWindowModel => ServiceLocator.Current.GetInstance<MainWindowViewModel>();
 

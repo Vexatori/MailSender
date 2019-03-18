@@ -11,8 +11,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-using MailSender.lib.Data.Debug;
-using MailSender.lib.Data.Linq2SQL;
+using MailSender.lib.Data;
 using MailSender.lib.Interfaces;
 using MailSender.lib.MVVM;
 using MailSender.UtilityClasses;
@@ -24,20 +23,9 @@ namespace MailSender.ViewModel
         private IRecipientsData _recipientsData;
         private IMailService _mailService;
         private IMailsData _mailsData;
+        private IServersData _serversData;
 
-        //private ObservableCollection<Recipient> _recipients;
-
-        //public ObservableCollection<Recipient> Recipients
-        //{
-        //    get
-        //    {
-        //        if ( _recipients != null ) return _recipients;
-        //        _recipients = new ObservableCollection<Recipient>(_recipientsData.GetAll());
-        //        return _recipients;
-        //    }
-        //}
-
-        public MainWindowViewModel( IRecipientsData recipientsData, IMailsData mailsData, IMailService mailService )
+        public MainWindowViewModel( IRecipientsData recipientsData, IMailsData mailsData, IMailService mailService, IServersData serversData )
         {
             UpdateRecipientsCommand = new RelayCommand(OnUpdateRecipientsCommandExecuted, CanUpdateRecipientsCommandExecuted);
 
@@ -48,7 +36,21 @@ namespace MailSender.ViewModel
             _mailsData = mailsData;
 
             _mailService = mailService;
+
+            _serversData = serversData;
+
+            foreach ( var mail in _mailsData.GetAll() )
+            {
+                MailsItems.Add( mail );
+            }
+
+            foreach ( var server in _serversData.GetAll() )
+            {
+                Servers.Add( server );
+            }
         }
+
+        public ObservableCollection<Server> Servers { get; } = new ObservableCollection<Server>();
 
         #region RecipientsCode
 
@@ -95,7 +97,7 @@ namespace MailSender.ViewModel
             string topic = String.Empty;
             string text = String.Empty;
 
-            if ( _selectedMail.Topic == String.Empty )
+            if ( string.IsNullOrEmpty( _selectedMail.Topic ) )
             {
                 var index = MailsItems.Count == 0 ? 0 : MailsItems.Count(m => Regex.IsMatch(m.Topic, @"^Mail( \d+)?$")) + 1;
                 topic = index == 0 ? "Mail" : $"Mail {index}";

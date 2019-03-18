@@ -63,7 +63,7 @@ namespace MailSender.lib
 
         public async Task DeleteByIdAsync( int id )
         {
-            var mailItem = GetById( id );
+            var mailItem = await GetByIdAsync( id );
             if ( !Mails.Items.Contains( mailItem ) ) return;
             Mails.Items.Remove( mailItem );
         }

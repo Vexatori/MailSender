@@ -5,13 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using MailSender.lib.Migrations;
+
 namespace MailSender.lib.Data.Context
 {
     public class MailDatabaseContext : DbContext
     {
+        static MailDatabaseContext()
+        {
+            System.Data.Entity.Database.SetInitializer( new MigrateDatabaseToLatestVersion<MailDatabaseContext, Configuration>() );
+        }
+
         public MailDatabaseContext() : base( "name=MailDatabaseContext" ) { }
 
-        public MailDatabaseContext( string ConnectionStr ) : base( ConnectionStr ) { }
+        //public MailDatabaseContext( string ConnectionStr ) : base( ConnectionStr ) { }
 
         public DbSet<Mail> Mails { get; set; }
 

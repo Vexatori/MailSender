@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 using MailSender.lib.Data;
-using MailSender.lib.Data.Debug;
 
 namespace MailSender.lib.Interfaces
 {

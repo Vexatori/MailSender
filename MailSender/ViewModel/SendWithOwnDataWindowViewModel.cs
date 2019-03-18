@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,8 +15,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 
-using MailSender.lib.Data.Debug;
+using MailSender.lib.Data;
 using MailSender.lib.MVVM;
+using MailSender.lib.Services;
 
 namespace MailSender.ViewModel
 {
@@ -36,19 +41,39 @@ namespace MailSender.ViewModel
 
         public ICommand SendMailCommand { get; }
 
-        private bool CanSendMailCommandExecute(object parametr) => true;
+        private bool CanSendMailCommandExecute( object parametr ) => true;
 
-        private void OnSendMailCommandExecute(object parametr)
+        private async void OnSendMailCommandExecute( object parametr )
         {
             var passwordBox = parametr as PasswordBox;
-            var password = passwordBox.SecurePassword;
-            string strSMTP = $"smtp.{MessageSender.Split( '@' ).Last()}";
-            EmailSendServiceClass.GetMailProperties( _messageTopic, _messageText, _messageGetter, _messageSender, _smtpPort, strSMTP, password );
-            try
+            _senderPassword = passwordBox.SecurePassword;
+            _smtpServer = $"smtp.{MessageSender.Split( '@' ).Last()}";
+            using ( MailMessage msg = new MailMessage( _messageSender, _messageGetter ) )
             {
-                EmailSendServiceClass.SendMail();
+                msg.From = new MailAddress( _messageSender );
+                msg.To.Add( _messageGetter );
+
+                msg.Subject = _messageTopic;
+                msg.Body = _messageText;
+                msg.IsBodyHtml = false;
+                msg.Priority = MailPriority.High;
+
+                using ( SmtpClient client = new SmtpClient( _smtpServer, _smtpPort ) )
+                {
+                    client.EnableSsl = true;
+
+                    client.Credentials = new NetworkCredential( _messageSender, _senderPassword );
+                    try
+                    {
+                        //client.SendAsync( msg, null );
+                        await client.SendMailAsync( msg );
+                    }
+                    catch ( SmtpException )
+                    {
+                        MessageBox.Show( "Сообщение не отправлено", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error );
+                    }
+                }
             }
-            catch ( Exception exception ) { MessageBox.Show( "Письмо не отправлено" ); }
         }
 
         public SendWithOwnDataWindowViewModel()

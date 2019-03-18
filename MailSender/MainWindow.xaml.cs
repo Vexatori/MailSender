@@ -14,7 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using MailSender.lib.Data.Debug;
 using MailSender.Views;
 using MailSender.Windows;
 

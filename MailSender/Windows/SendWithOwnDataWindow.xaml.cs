@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-using MailSender.lib.Data.Debug;
+using MailSender.lib.Data;
 
 namespace MailSender.Windows
 {

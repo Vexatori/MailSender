@@ -94,3 +94,7 @@ C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientEdito
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Views\RecipientEditor.baml
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Windows\SendWithOwnDataWindow.g.cs
 C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\Windows\SendWithOwnDataWindow.baml
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\EntityFramework.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\EntityFramework.xml
+C:\Users\Alex\source\repos\MailSender2\MailSender\bin\Debug\EntityFramework.SqlServer.xml

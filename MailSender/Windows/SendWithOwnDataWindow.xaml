@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender.Windows"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:dd="clr-namespace:MailSender.lib.Data.Debug;assembly=MailSender.lib"
+        xmlns:dd="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
         mc:Ignorable="d"
         Height="450" Width="800" ResizeMode="NoResize"
         DataContext="{Binding SendWithOwnDataWindowModel, Source={StaticResource Locator}}">

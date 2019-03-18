@@ -55,20 +55,25 @@
     <Compile Include="Data\Recipient.cs" />
     <Compile Include="Data\SchedulerTask.cs" />
     <Compile Include="Data\SendingList.cs" />
-    <Compile Include="Services\EmailSendServiceClass.cs" />
+    <Compile Include="EFRecipientsData.cs" />
+    <Compile Include="EFServersData.cs" />
+    <Compile Include="Interfaces\IServersData.cs" />
+    <Compile Include="Migrations\201902261818335_Initial.cs" />
+    <Compile Include="Migrations\201902261818335_Initial.Designer.cs">
+      <DependentUpon>201902261818335_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903010858146_DataRestrictions.cs" />
+    <Compile Include="Migrations\201903010858146_DataRestrictions.Designer.cs">
+      <DependentUpon>201903010858146_DataRestrictions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Data\SchedulerTasks.cs" />
     <Compile Include="Data\Senders.cs" />
     <Compile Include="Data\Sender.cs" />
     <Compile Include="Data\Servers.cs" />
-    <Compile Include="Data\Linq2SQL\MailDatabase.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MailDatabase.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Data\Mail.cs" />
     <Compile Include="Data\Mails.cs" />
     <Compile Include="Data\Server.cs" />
-    <Compile Include="InLinq2SQLRecipientsData.cs" />
     <Compile Include="InMemoryMailsData.cs" />
     <Compile Include="InMemoryRecipientsData.cs" />
     <Compile Include="Interfaces\IData.cs" />
@@ -87,17 +92,16 @@
     </Compile>
     <Compile Include="Services\PasswordService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902261818335_Initial.resx">
+      <DependentUpon>201902261818335_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903010858146_DataRestrictions.resx">
+      <DependentUpon>201903010858146_DataRestrictions.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Data\Linq2SQL\MailDatabase.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>MailDatabase.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\Linq2SQL\MailDatabase.dbml.layout">
-      <DependentUpon>MailDatabase.dbml</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
