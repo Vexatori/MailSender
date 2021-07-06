@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MailSender",
+    "\\MailSender.lib",
+    "\\MailSender.lib\\MVVM",
+    "\\MailSender\\ViewModels"
+  ],
+  "SelectedNode": "\\MailSender\\MainWindow.xaml.cs",
+  "PreviewInSolutionExplorer": false
+}

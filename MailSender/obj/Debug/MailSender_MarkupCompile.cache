@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\Проекты VS\MailSender\MailSender\obj\Debug\
+C:\Users\Alex\source\repos\MailSender2\MailSender\obj\Debug\
 MailSender
 none
 false
 DEBUG;TRACE
-F:\Проекты VS\MailSender\MailSender\App.xaml
-2546281578
+C:\Users\Alex\source\repos\MailSender2\MailSender\App.xaml
+5-1121218228
 
-11-1707298214
-21421638166
-Controls\TabChanger.xaml;MainWindow.xaml;
+16-1329506283
+82-1364060231
+Controls\TabChanger.xaml;MainWindow.xaml;Views\RecipientEditor.xaml;Views\RecipientsView.xaml;Windows\SendWithOwnDataWindow.xaml;
 
-True
+False
 

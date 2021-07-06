@@ -4,11 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
-        xmlns:linq2sql="clr-namespace:MailSender.lib.Data.Linq2SQL;assembly=MailSender.lib"
-        xmlns:dd="clr-namespace:MailSender.lib.Data.Debug;assembly=MailSender.lib"
+        xmlns:dd="clr-namespace:MailSender.lib.Data;assembly=MailSender.lib"
+        xmlns:v="clr-namespace:MailSender.ViewModels"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:timer="clr-namespace:MailSender.UtilityClasses"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:views="clr-namespace:MailSender.Views"
         mc:Ignorable="d"
-        Title="MailSender" Icon="img/Mail.ico"  Height="450" Width="800">
+        Title="MailAddressSender" Icon="img/Mail.ico"  Height="450" Width="800"
+        DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
+    <Window.Resources>
+        <!--<vm:TestViewModel x:Key="TestViewModel"/>-->
+        <Style TargetType="{x:Type fa:ImageAwesome}">
+            <Setter Property="Height" Value="15"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -17,19 +29,29 @@
                 <MenuItem Header="Сохранить"/>
                 <MenuItem Header="Закрыть"/>
                 <Separator/>
-                <MenuItem Header="Выход"/>
+                <MenuItem Header="Выход" Click="MenuItem_Click"/>
             </MenuItem>
             <MenuItem Header="Сервис" IsEnabled="False"></MenuItem>
             <MenuItem Header="Помощь" IsEnabled="False"></MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom">
+            <StatusBar.Resources>
+                <timer:Timer x:Key="Timer"/>
+            </StatusBar.Resources>
             <StackPanel Orientation="Horizontal" xmlns:c="clr-namespace:MailSender.Controls">
                 <TextBlock Text="Перейти к вкладке" VerticalAlignment="Center" Margin="0, 0, 5, 0"></TextBlock>
                 <c:TabChanger MaxHeight="20" Left="TabChanger_OnLeft" Right="TabChanger_OnRight"></c:TabChanger>
-                <TextBlock Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
+                <TextBlock Text="{Binding Source={StaticResource Timer}, Path=Now, ConverterCulture=ru-ru}" Margin="10, 0 ,0 ,0" Name="txtblStatus" MinWidth="150" VerticalAlignment="Center"/>
             </StackPanel>
         </StatusBar>
         <TabControl x:Name="tcTabs">
+            <!--<TabItem Header="MVVM">
+                <StackPanel DataContext="{Binding Source={StaticResource TestViewModel}}">
+                    <TextBlock Text="{Binding Text}"/>
+                    <TextBox Text="{Binding Text}"/>
+                    <TextBox Text="{Binding Text}"/>
+                </StackPanel>
+            </TabItem>-->
             <TabItem Header="Списки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
@@ -40,16 +62,15 @@
                         </ToolBarTray.Resources>
                         <ToolBar Band="0">
                             <Label Content="Сервера" Margin="25,0,0,0"/>
-                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name">
-                            </ComboBox>
+                            <ComboBox MinWidth="200" MaxWidth="250" SelectedIndex="0" ItemsSource="{x:Static dd:Servers.Items}" DisplayMemberPath="Name"/>
                             <Button ToolTip="Добавить">
-                                <Image Source="img/add.png"/>
+                                <fa:ImageAwesome Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <Image Source="img/edit.png"/>
+                                <fa:ImageAwesome Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <Image Source="img/remove.png"/>
+                                <fa:ImageAwesome Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar Band="1">
@@ -65,41 +86,47 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                             <Button ToolTip="Добавить">
-                                <Image Source="img/add.png"/>
+                                <fa:ImageAwesome Icon="AddressCard"/>
                             </Button>
                             <Button ToolTip="Редактировать">
-                                <Image Source="img/edit.png"/>
+                                <fa:ImageAwesome Icon="Edit"/>
                             </Button>
                             <Button ToolTip="Удалить">
-                                <Image Source="img/remove.png"/>
+                                <fa:ImageAwesome Icon="Trash"/>
                             </Button>
                         </ToolBar>
                         <ToolBar>
                             <TextBlock VerticalAlignment="Center" Margin="0,0,5,0" Text="Перейти в планировщик"/>
                             <Button Click="Button_Click">
-                                <Image Source="img/scheduler.png"/>
+                                <fa:ImageAwesome Icon="Calendar"/>
                             </Button>
                         </ToolBar>
                     </ToolBarTray>
-                    <GroupBox Header="Список получателей писем">
-                        <GroupBox.Resources>
-                            <linq2sql:MailDatabaseContext x:Key="MailData"/>
-                        </GroupBox.Resources>
+                    <!--<GroupBox Header="Список получателей писем">
                         <DataGrid AutoGenerateColumns="False" 
-                                  ItemsSource="{Binding Recipient, Source={StaticResource MailData}}" 
                                   HorizontalGridLinesBrush="{x:Null}" 
                                   VerticalGridLinesBrush="DarkGray"
-                                  IsReadOnly="True">
+                                  IsReadOnly="True"
+                                  ItemsSource="{Binding Recipients}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
                                 <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
                                 <DataGridTextColumn Header="Address" MinWidth="150" Binding="{Binding Address}"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </GroupBox>
+                    </GroupBox>-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <views:RecipientsView Grid.Column="0"/>
+                        <views:RecipientEditor Grid.Column="1"/>
+                        <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="5"></GridSplitter>
+                    </Grid>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Планировщик">
+            <TabItem x:Name="tiScheduler" Header="Планировщик">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -113,7 +140,8 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Запланировать" VerticalAlignment="Center"/>
-                                    <Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>
+                                    <!--<Image Source="img/clock.png"  Height="20" Margin="5, 0, 0 ,0"/>-->
+                                    <fa:ImageAwesome Margin="5, 0 ,0 ,0" Icon="ClockOutline"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
@@ -121,7 +149,16 @@
                             <Button.Content>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Отправить сейчас" VerticalAlignment="Center"/>
-                                    <Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>
+                                    <!--<Image Source="img/send.png" Height="20" Margin="5, 0, 0 ,0"/>-->
+                                    <fa:ImageAwesome Margin="5, 0 ,0 ,0" Icon="Send"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="btnSendWithOwnParametrs" Click="BtnSendWithOwnParametrs_Click">
+                            <Button.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Отправить со своими данными" VerticalAlignment="Center"/>
+                                    <fa:ImageAwesome Icon="Twitter"/>
                                 </StackPanel>
                             </Button.Content>
                         </Button>
@@ -155,12 +192,28 @@
                 <DockPanel>
                     <GroupBox Header="Письма">
                         <DockPanel MinWidth="150" MaxWidth="200">
-                            <Button Content="Создать" DockPanel.Dock="Bottom"></Button>
-                            <Button Content="Сохранить" DockPanel.Dock="Bottom"></Button>
-                            <ListBox></ListBox>
+                            <Button Name="btnNewMail" Content="Создать" DockPanel.Dock="Bottom" Command="{Binding NewMailCommand}"></Button>
+                            <Button Name="btnSaveMail" Content="Сохранить" DockPanel.Dock="Bottom"></Button>
+                            <ListView ItemsSource="{Binding MailsItems}" SelectedItem="{Binding SelectedMail}" Name="lvMails" SelectionMode="Single">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Topic}" Header="Тема письма"/>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <!--<ListBox ItemsSource="{Binding MailsItems}" SelectedItem="{Binding SelectedMail}" Name="lvMails" SelectionMode="Single" DisplayMemberPath="Topic"/>-->
                         </DockPanel>
                     </GroupBox>
-                    <GroupBox Header="Текст письма"></GroupBox>
+                    <DockPanel DataContext="{Binding SelectedMail}">
+                        <GroupBox Header="Тема письма" DockPanel.Dock="Top">
+                            <!--<TextBox Name="tbxMailTopic" Text="{Binding SelectedItem.Topic, ElementName=lvMails}"/>-->
+                            <TextBox Name="tbxMailTopic" Text="{Binding Topic, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        </GroupBox>
+                        <GroupBox Header="Текст письма">
+                            <!--<TextBox Name="tbxMailText" Text="{Binding SelectedItem.Text, ElementName=lvMails}"/>-->
+                            <TextBox Name="tbxMailText" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                        </GroupBox>
+                    </DockPanel>
                 </DockPanel>
             </TabItem>
             <!--<TabItem Header="Статистика" IsEnabled="False"></TabItem>-->

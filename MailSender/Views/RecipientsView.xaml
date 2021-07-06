@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="MailSender.Views.RecipientsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MailSender.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding UpdateRecipientsCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <DockPanel Margin="5">
+        <TextBlock DockPanel.Dock="Top" Text="Получатели писем" HorizontalAlignment="Center" Padding="3" FontSize="15" Margin="0, 0, 0, 3"/>
+        <DockPanel DockPanel.Dock="Top" Margin="3, 0, 3, 5">
+            <TextBlock Text="Поиск:" Padding="3"/>
+            <TextBox></TextBox>
+        </DockPanel>
+        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Padding="10, 5" Margin="0, 5" Command="{Binding UpdateRecipientsCommand}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Обновить" VerticalAlignment="Center"/>
+                <fa:ImageAwesome Height="15" Icon="Refresh" Margin="5, 0, 0, 0"/>
+            </StackPanel>
+        </Button>
+        <DataGrid AutoGenerateColumns="False" 
+                  HorizontalGridLinesBrush="{x:Null}" 
+                  VerticalGridLinesBrush="DarkGray"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding Recipients}"
+                  SelectedItem="{Binding CurrentRecipient}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" MinWidth="40" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="MailAddress" MinWidth="150" Binding="{Binding Address}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>
